@@ -87,7 +87,7 @@ class GravitySystem:
                          continue
                     
                     r = body_j.position - body_i.position   # Get the difference vector between the position vectors of the two bodies
-                    distance = vp.mag(r + vp.vector(1e-10, 1e-10, 1e-10)    )        # The magnitude of the difference vector is the distance between the bodies
+                    distance = vp.mag(r + vp.vector(1e-10, 1e-10, 1e-10))        # The magnitude of the difference vector is the distance between the bodies
 
                     total_acceleration += self.G * body_j.mass * r / distance**3     
                

@@ -15,7 +15,14 @@ sun = classes.Body(
     position=vp.vector(0, 0, 0)
     )
 
-bodies = [earth, sun]
+sun2 = classes.Body(
+    mass=1.989e29, 
+    radius=695700e3, 
+    velocity=vp.vector(2.43e4, -1.77e4, ),     # For now, I'm defining x and y as the plane of earth's orbit
+    position=vp.vector(-8.7e10, 1.2e11, 0)
+    )
+
+bodies = [earth, sun, sun2]
 
 gravity_system = classes.GravitySystem()
 integrator = classes.VelocityIntegrator()
