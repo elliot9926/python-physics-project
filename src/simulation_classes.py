@@ -1,6 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 import vpython as vp    # Seems like a decent library for 3d physics simulations, we'll use its vectors for our math
 
 class Simulation:
@@ -24,25 +22,7 @@ class Simulation:
         @property
         def step_count(self):
           return int(np.floor(self.total_time / self.dt))
-        
-        def plot_results(self):
-          bodies = self.system.bodies
-          fig = plt.figure()
-          ax = fig.add_subplot(111, projection='3d')
-
-          for body in bodies:
-               x, y, z = [], [], []
-
-               for i in body.position_history:
-                    x.append(i.x)
-                    y.append(i.y)
-                    z.append(i.z)
-
-               ax.scatter(x, y, z, cmap='viridis', marker='o')
-
-          plt.show()
-               
-               
+            
 
 class System:
      """The overall system including the bodies and the forces"""
