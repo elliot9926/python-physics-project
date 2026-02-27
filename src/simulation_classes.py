@@ -3,10 +3,9 @@ import vpython as vp    # Seems like a decent library for 3d physics simulations
 
 class Simulation:
         """Highest-level control loop which actually runs the simulation"""
-        def __init__(self, system, dt, total_time, write_positions=False, is_running=False):
+        def __init__(self, system, dt, write_positions=False, is_running=False):
              self.system = system
              self.dt = dt # Delta time
-             self.total_time = total_time
              self.time = 0.0 # Starts at 0 when we initialize
              self.write_positions = write_positions
              self.is_running = is_running
@@ -19,9 +18,6 @@ class Simulation:
                for body in self.system.bodies:
                     body.write_position()
         
-        @property
-        def step_count(self):
-          return int(np.floor(self.total_time / self.dt))
             
 
 class System:
@@ -53,6 +49,7 @@ class Body:
      
 
 class GravitySystem:
+     """Implementation of Newtonian gravity"""
      G = 6.6743e-11      # Gravitational constant
      
      def __init__(self):
@@ -80,6 +77,7 @@ class GravitySystem:
      
 
 class  VelocityIntegrator:  # Verlet integrator, I still need to read more about this but it seems like the standard
+     """Integrator which updates the positions and velocities of the given bodies"""
      def __init__(self):
           pass
      def step(self, bodies, gravity_system, dt):

@@ -33,6 +33,6 @@ def create_defaults():
 
     system = simulation_classes.System(bodies, integrator, gravity_system)
 
-    simulation = simulation_classes.Simulation(system, 3600*12.0, 3600*24*365.0, True)
+    simulation = simulation_classes.Simulation(system, 3600*12.0, True)
 
     return simulation
