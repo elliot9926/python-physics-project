@@ -1,6 +1,8 @@
 import vpython as vp
-import runtime
 
+def set_simulation(sim):
+    global simulation
+    simulation = sim
 
 
 def run_button(button):
@@ -9,13 +11,13 @@ def run_button(button):
 
         print("Running")
 
-        runtime.sim.is_running = False
+        simulation.is_running = False
     else:
         button.text = 'Pause'
 
         print("Pausing")
 
-        runtime.sim.is_running = True
+        simulation.is_running = True
 
 def mass_input(input):
     pass
