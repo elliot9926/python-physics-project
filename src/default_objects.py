@@ -2,6 +2,7 @@ import simulation_classes
 import vpython as vp
 
 def create_defaults():
+    """Initializes all required objects and adds default bodies to the system"""
     earth = simulation_classes.Body(
         mass=5.97e24, 
         radius=6371e3, 

@@ -2,6 +2,7 @@ import vpython as vp
 import ui_functions
 
 def initial_draw(bodies):
+    """Initializes Run button and UI elements for default bodies"""
     run_button = vp.button(bind=ui_functions.run_button, text='Run')
     vp.scene.append_to_caption('\n\n')
 
@@ -9,6 +10,7 @@ def initial_draw(bodies):
         draw_body_row(body)
 
 def draw_body_row(body):
+    """Draws a row of buttons and other inputs to modify a specific body's attributes"""
     name_input = vp.winput(bind=ui_functions.name_input, type='string', width=50, text=body.name)
     vp.scene.append_to_caption("    ")
 

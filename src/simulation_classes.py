@@ -7,13 +7,15 @@ class Simulation:
              self.system = system
              self.dt = dt # Delta time
              self.time = 0.0 # Starts at 0 when we initialize
-             self.write_positions = write_positions
+             self.write_positions = write_positions # TODO: remove this
              self.is_running = is_running
              
 
-        def step(self): # Steps towards the next moment in time
+        def step(self): 
+             """"""
              self.system.integrator.step(self.system.bodies, self.system.gravity_system, self.dt)
 
+             # TODO: To be depreceated, we no longer need to record the bodies' positions in order to visualize them
              if self.write_positions:
                for body in self.system.bodies:
                     body.write_position()
@@ -44,7 +46,7 @@ class Body:
           self.name = name
     
 
-    def write_position(self):
+    def write_position(self): # TODO: remove this
          self.position_history.append(self.position)
      
 
@@ -56,6 +58,7 @@ class GravitySystem:
           pass
      
      def compute_accelerations(self, bodies):
+          """Iterates through the bodies and calculates their gravitational acceleration"""
           accelerations = []
 
           for body_i in bodies:
@@ -80,7 +83,9 @@ class  VelocityIntegrator:  # Verlet integrator, I still need to read more about
      """Integrator which updates the positions and velocities of the given bodies"""
      def __init__(self):
           pass
+
      def step(self, bodies, gravity_system, dt):
+          """Changes the positions and velocities of the bodies"""
            # 1. Compute current accelerations of all bodies
           accelerations = gravity_system.compute_accelerations(bodies)
 
@@ -99,7 +104,7 @@ class  VelocityIntegrator:  # Verlet integrator, I still need to read more about
 
 
 def write_file(system):
-     """Updates a file with the current states of all bodies in the system"""
+     """Updates a file with the current states of all bodies in the system (may be removed)"""
      pass
 
 

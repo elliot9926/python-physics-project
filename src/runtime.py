@@ -25,5 +25,6 @@ while True:
     if simulation.is_running:
         simulation.step()
 
+        # Updates visual representation for each body
         for body in bodies:
             visualizer.vis_bodies[bodies.index(body)].pos = body.position
