@@ -5,12 +5,13 @@ import vpython as vp    # Seems like a decent library for 3d physics simulations
 
 class Simulation:
         """Highest-level control loop which actually runs the simulation"""
-        def __init__(self, system, dt, total_time, write_positions=False):
+        def __init__(self, system, dt, total_time, write_positions=False, is_running=False):
              self.system = system
              self.dt = dt # Delta time
              self.total_time = total_time
              self.time = 0.0 # Starts at 0 when we initialize
              self.write_positions = write_positions
+             self.is_running = is_running
              
 
         def step(self): # Steps towards the next moment in time
@@ -57,13 +58,14 @@ class System:
 
 class Body:
     """A class to represent a spherical rigid body"""
-    def __init__(self, mass, radius, velocity, position, acceleration = vp.vector(0,0,0)):
+    def __init__(self, mass, radius, velocity, position, acceleration = vp.vector(0,0,0), name='None'):
           self.mass = mass                     # Body's mass in kg
           self.radius = radius                 # Body's radius in meters
           self.velocity = velocity             # Body's initial velocity as a 3D vector in m/s
           self.position = position             # Body's position in 3D Cartesian space
           self.acceleration = acceleration     # Total acceleration of the body
           self.position_history = []
+          self.name = name
     
 
     def write_position(self):
