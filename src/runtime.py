@@ -20,6 +20,7 @@ draw_ui.initial_draw(bodies)
 
 
 while True:
+    """VPython will always be running, at a rate of 30 updates/second"""
     vp.rate(30)
 
     if simulation.is_running:

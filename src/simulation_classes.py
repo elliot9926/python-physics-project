@@ -1,5 +1,5 @@
 import numpy as np
-import vpython as vp    # Seems like a decent library for 3d physics simulations, we'll use its vectors for our math
+import vpython as vp
 
 class Simulation:
         """Highest-level control loop which actually runs the simulation"""
@@ -12,10 +12,10 @@ class Simulation:
              
 
         def step(self): 
-             """"""
+             """Steps forward one dt in time"""
              self.system.integrator.step(self.system.bodies, self.system.gravity_system, self.dt)
 
-             # TODO: To be depreceated, we no longer need to record the bodies' positions in order to visualize them
+             # TODO: To be removed, we no longer need to record the bodies' positions in order to visualize them
              if self.write_positions:
                for body in self.system.bodies:
                     body.write_position()
