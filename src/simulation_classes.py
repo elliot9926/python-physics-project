@@ -7,7 +7,7 @@ class Simulation:
              self.system = system
              self.dt = dt # Delta time
              self.time = 0.0 # Starts at 0 when we initialize
-             self.write_positions = write_positions # TODO: remove this
+             self.write_positions = write_positions # TODO: remove this line
              self.is_running = is_running
              
 
@@ -46,7 +46,7 @@ class Body:
           self.name = name
     
 
-    def write_position(self): # TODO: remove this
+    def write_position(self): # TODO: remove this block
          self.position_history.append(self.position)
      
 
