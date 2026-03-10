@@ -9,7 +9,5 @@ class Visualizer:
         # Create a list of vpython sphere objects to visually represent the bodies
         for body in simulation.system.bodies:
             new_sphere = vp.simple_sphere(pos=body.position, radius=body.radius, make_trail=True, retain=50)
+            body.vis_object = new_sphere
             self.vis_bodies.append(new_sphere)
-
-
-

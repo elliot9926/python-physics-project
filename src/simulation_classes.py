@@ -36,7 +36,7 @@ class System:
 
 class Body:
     """A class to represent a spherical rigid body"""
-    def __init__(self, mass, radius, velocity, position, acceleration = vp.vector(0,0,0), name='None'):
+    def __init__(self, mass, radius, velocity, position, acceleration = vp.vector(0,0,0), name='None', vis_object=None):
           self.mass = mass                     # Body's mass in kg
           self.radius = radius                 # Body's radius in meters
           self.velocity = velocity             # Body's initial velocity as a 3D vector in m/s
@@ -44,6 +44,7 @@ class Body:
           self.acceleration = acceleration     # Total acceleration of the body
           self.position_history = []
           self.name = name
+          self.vis_object = vis_object         # The VPython sphere used to represent this body
     
 
     def write_position(self): # TODO: remove this block
@@ -57,7 +58,8 @@ class GravitySystem:
      def __init__(self):
           pass
      
-     def compute_accelerations(self, bodies):
+     @staticmethod
+     def compute_accelerations(bodies):
           """Iterates through the bodies and calculates their gravitational acceleration"""
           accelerations = []
 
@@ -71,7 +73,7 @@ class GravitySystem:
                     r = body_j.position - body_i.position   # Get the difference vector between the position vectors of the two bodies
                     distance = vp.mag(r + vp.vector(1e-10, 1e-10, 1e-10))        # The magnitude of the difference vector is the distance between the bodies
 
-                    total_acceleration += self.G * body_j.mass * r / distance**3     
+                    total_acceleration += GravitySystem.G * body_j.mass * r / distance**3     
                
                accelerations.append(total_acceleration)
 

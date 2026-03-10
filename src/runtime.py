@@ -17,15 +17,15 @@ ui_functions.set_simulation(simulation)
 
 draw_ui.initial_draw(bodies)
 
-
-
 while True:
     """VPython will always be running, at a rate of 30 updates/second"""
     vp.rate(30)
 
     if simulation.is_running:
         simulation.step()
+        
+        draw_ui.disable_buttons()
 
-        # Updates visual representation for each body
+    # Updates visual representation for each body
         for body in bodies:
             visualizer.vis_bodies[bodies.index(body)].pos = body.position
