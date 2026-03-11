@@ -30,16 +30,26 @@ pip install -r requirements.txt
 ```
 
 # Usage
-Execute runtime.py to launch the software. Click on the 'Run' button to begin the simulation.
+While in the `python-physics-project` directory, run
+```
+python src/runtime.py
+```
+Use the Run button to begin the simulation.
 
-To be added: UI-Based editing of body attributes
+Navigating the viewport:
+- Right click + drag to rotate
+- Scroll wheel to zoom
+- Shift + left click to pan
 
 # Features
-- Adjustable mass, initial velocity, and position
+- Dynamically change physical attributes such as mass, velocity, and position through the UI
+- Editable visual attributes such as name, color, and radius
 - Animated visualization in VPython
+- Ability to create a plot of average distances within the system using matplotlib
+    - Why average distances? As the final state of a 3+ body system in this simulation will see one or more bodies ejected, the average distance between bodies is a clear indicator of when the system loses stability.
 
 # Examples/demos
-- Default system of 3 bodies included in default_objects.py
+A stable system including the Earth and Sun (with realistic attributes) is created by default. Try adding a third body to see what happens!
 
 # License
 Distributed under CC BY-SA 4.0
