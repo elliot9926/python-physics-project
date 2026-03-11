@@ -2,32 +2,35 @@ import vpython as vp
 import math
 
 class Simulation:
-        """Highest-level class which handles all aspects of the simulation"""
-        def __init__(self, system, dt,  ui_helper=None, graph_helper=None, visualizer=None, is_running=False):
-             self.system = system
-             self.dt = dt # Delta time
-             self.time = 0.0 # Starts at 0 when we initialize
-             self.is_running = is_running
-             self.visualizer = visualizer
-             self.ui_helper = ui_helper
-             self.graph_helper = graph_helper
+     """Highest-level class which handles all aspects of the simulation"""
+     def __init__(self, system, dt,  ui_helper=None, graph_helper=None, visualizer=None, is_running=False):
+          self.system = system
+          self.dt = dt # Delta time
+          self.time = 0.0 # Starts at 0 when we initialize
+          self.is_running = is_running
+          self.visualizer = visualizer
+          self.ui_helper = ui_helper
+          self.graph_helper = graph_helper
              
-             # Used to create a graph of the average distances in the simulation
-             self.average_distances = []
-             self.average_distances_times = [] 
+          # Used to create a graph of the average distances in the simulation
+          self.average_distances = []
+          self.average_distances_times = [] 
+             
+     def __repr__(self):
+          return f"Simulation details:\nIs currently running:{self.is_running}\nUI Helper: {self.ui_helper}\nGraph Helper: {self.graph_helper}\nVisualizer: {self.visualizer}"
+            
+     def step(self): 
+          """Steps forward one dt in time"""
+          self.system.integrator.step(self.system.bodies, self.system.gravity_system, self.dt)
 
-        def step(self): 
-             """Steps forward one dt in time"""
-             self.system.integrator.step(self.system.bodies, self.system.gravity_system, self.dt)
+          self.time += self.dt
 
-             self.time += self.dt
+          # Append current states to the average distances list
+          self.average_distances.append(self.system.calculate_average_distances(self.system.bodies))
+          self.average_distances_times.append(math.floor(self.time/(3600*24)))
 
-             # Append current states to the average distances list
-             self.average_distances.append(self.system.calculate_average_distances(self.system.bodies))
-             self.average_distances_times.append(math.floor(self.time/(3600*24)))
-
-        def create_graph(self):
-             self.graph_helper.draw_graph(self.average_distances_times, self.average_distances)
+     def create_graph(self):
+          self.graph_helper.draw_graph(self.average_distances_times, self.average_distances)
             
 class System:
      """The overall system including the bodies and the forces"""
@@ -91,6 +94,9 @@ class Body:
     
     def __str__(self):
           return self.name
+    
+    def __repr__(self):
+         return f"Body name: {self.name}\nPosition: {self.position}\nVisualization object reference:{self.vis_object}"
      
 
 class GravitySystem:

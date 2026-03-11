@@ -18,7 +18,7 @@ def add_button(button):
     """Used to add a new body to the simulation before starting"""
     new_body = simulation.system.add_new_body(simulation)
 
-    print(f"\n\nNew body info: \nRef:{new_body}\nName:{new_body}")     # For debugging
+    print(f"\n\nNew body info: {repr(new_body)}")     # For debugging
     simulation.ui_helper.draw_body_row(new_body)
 
 def graph_button(button):
