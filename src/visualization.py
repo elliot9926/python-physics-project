@@ -22,7 +22,7 @@ class Visualizer:
             pos=body.position, 
             radius=body.radius, 
             make_trail=True, 
-            retain=1000, 
+            #retain=1000, 
             color=vp.color.blue, 
             trail_color=vp.color.white,
             )
