@@ -1,8 +1,9 @@
 import simulation_classes
+import draw_ui
 import vpython as vp
 
 def create_defaults():
-    """Initializes all required objects and adds default bodies to the system"""
+    """Initializes all required objects and adds default bodies (earth and sun) to the system"""
     earth = simulation_classes.Body(
         mass=5.97e24, 
         radius=6371e3, 
@@ -19,21 +20,17 @@ def create_defaults():
         name='Sun'
         )
 
-    sun2 = simulation_classes.Body(
-        mass=1.989e29, 
-        radius=695700e3, 
-        velocity=vp.vector(2.43e4, -1.77e4, -3e3),     # For now, I'm defining x and y as the plane of earth's orbit
-        position=vp.vector(-8.7e10, 1.2e11, 10e7),
-        name='Sun2'
-        )
-
-    bodies = [earth, sun, sun2]
+    bodies = [earth, sun]
 
     gravity_system = simulation_classes.GravitySystem()
     integrator = simulation_classes.VelocityIntegrator()
 
+
     system = simulation_classes.System(bodies, integrator, gravity_system)
 
-    simulation = simulation_classes.Simulation(system, 3600*12.0, True)
+    simulation = simulation_classes.Simulation(
+        system=system, 
+        dt=3600*12.0,
+        write_positions=True)
 
     return simulation

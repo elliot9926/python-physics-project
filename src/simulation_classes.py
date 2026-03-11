@@ -3,12 +3,14 @@ import vpython as vp
 
 class Simulation:
         """Highest-level control loop which actually runs the simulation"""
-        def __init__(self, system, dt, write_positions=False, is_running=False):
+        def __init__(self, system, dt,  ui_helper=None, write_positions=False, is_running=False, visualizer=None):
              self.system = system
              self.dt = dt # Delta time
              self.time = 0.0 # Starts at 0 when we initialize
              self.write_positions = write_positions # TODO: remove this line
              self.is_running = is_running
+             self.visualizer = visualizer
+             self.ui_helper = ui_helper
              
 
         def step(self): 
@@ -33,6 +35,23 @@ class System:
      def bodies(self):
           return self.__bodies
      
+     def add_new_body(self, sim):
+          """Adds a new body to the simulation after initialization"""
+          new_body = Body(
+               mass=1.989e30, 
+               radius=695700e3, 
+               velocity=vp.vector(0, 0, 0), 
+               position=vp.vector(0, 0, 0),
+               name='New Body'
+          )
+
+          print(f"\n\nSimulation: {sim}\nSim visualizer:{sim.visualizer}\n\n")
+          self.__bodies.append(new_body)
+          sim.visualizer.append_body(new_body)
+
+          return new_body
+     
+     
 
 class Body:
     """A class to represent a spherical rigid body"""
@@ -46,9 +65,12 @@ class Body:
           self.name = name
           self.vis_object = vis_object         # The VPython sphere used to represent this body
     
+    def __str__(self):
+          return self.name
 
     def write_position(self): # TODO: remove this block
          self.position_history.append(self.position)
+
      
 
 class GravitySystem:
