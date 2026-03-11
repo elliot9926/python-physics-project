@@ -39,6 +39,9 @@ class System:
           self.integrator = integrator
           self.gravity_system = gravity_system
 
+     def __repr__(self):
+          return f"\nSystem with bodies: {self.bodies}\n"
+
      @property
      def bodies(self):
           return self.__bodies
@@ -53,7 +56,7 @@ class System:
                name='New Body'
           )
 
-          print(f"\n\nSimulation: {sim}\nSim visualizer:{sim.visualizer}\n\n") # For debugging purposes
+          print(f"\nAdding new body to {self} in \n{sim}") # For debugging purposes
           self.__bodies.append(new_body)
           sim.visualizer.append_body(new_body)
 

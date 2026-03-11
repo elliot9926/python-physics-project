@@ -18,7 +18,7 @@ def add_button(button):
     """Used to add a new body to the simulation before starting"""
     new_body = simulation.system.add_new_body(simulation)
 
-    print(f"\n\nNew body info: {repr(new_body)}")     # For debugging
+    print(f"\n\nNew body info:\n{repr(new_body)}")     # For debugging
     simulation.ui_helper.draw_body_row(new_body)
 
 def graph_button(button):
@@ -27,14 +27,20 @@ def graph_button(button):
 
 def mass_input(input, body):
     """Allows for user to change a body's mass"""
-    body.mass = float(input.number)
+    try:
+        body.mass = float(input.number)
+    except TypeError:
+        print("\nInvalid input for mass: numerical inputs only.\n")
 
 def radius_input(input, body):
-    """Allows for user to change a body's mass"""
-    new_radius = float(input.number)
-    
-    body.radius = new_radius
-    body.vis_object.radius = new_radius
+    """Allows for user to change a body's radius"""
+    try:
+        new_radius = float(input.number)
+        
+        body.radius = new_radius
+        body.vis_object.radius = new_radius
+    except TypeError:
+        print("\nInvalid input for radius: numerical inputs only.\n")
 
 def name_input(input, body):
     """Allows for user to change a body's name"""
@@ -49,21 +55,27 @@ def color_input(input, body):
 
 def position_input(input, body, axis):
     """Allows for user to change a body's initial position"""
-    if axis == 'x':
-        body.position.x = float(input.number)
-    elif axis == 'y':
-        body.position.y = float(input.number)
-    elif axis == 'z':
-        body.position.z = float(input.number)
+    try:
+        if axis == 'x':
+            body.position.x = float(input.number)
+        elif axis == 'y':
+            body.position.y = float(input.number)
+        elif axis == 'z':
+            body.position.z = float(input.number)
+    except TypeError:
+        print("\nInvalid input for position: numerical inputs only.\n")
 
 def velocity_input(input, body, axis):
     """Allows for user to change a body's initial velocity"""
-    if axis == 'x':
-        body.velocity.x = float(input.number)
-    elif axis == 'y':
-        body.velocity.y = float(input.number)
-    elif axis == 'z':
-        body.velocity.z = float(input.number)
+    try:
+        if axis == 'x':
+            body.velocity.x = float(input.number)
+        elif axis == 'y':
+            body.velocity.y = float(input.number)
+        elif axis == 'z':
+            body.velocity.z = float(input.number)
+    except TypeError:
+        print("\nInvalid input for velocity: numerical inputs only.\n")
         
 
 
