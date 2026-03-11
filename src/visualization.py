@@ -1,7 +1,7 @@
 import vpython as vp
 
 class Visualizer:
-    """Used to initialize the 3D objects within the VPython UI"""
+    """Used to display 3D object representations of bodies using VPython"""
     def __init__(self, simulation):
         self.simulation = simulation
         self.vis_bodies = []
@@ -24,7 +24,7 @@ class Visualizer:
             make_trail=True, 
             retain=1000, 
             color=vp.color.blue, 
-            trail_color=vp.color.white
+            trail_color=vp.color.white,
             )
         
         body.vis_object = new_sphere

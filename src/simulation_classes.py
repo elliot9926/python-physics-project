@@ -106,9 +106,6 @@ class GravitySystem:
      """Implementation of Newtonian gravity"""
      G = 6.6743e-11      # Gravitational constant
      
-     def __init__(self):
-          pass
-     
      @staticmethod
      def compute_accelerations(bodies):
           """Iterates through the bodies and calculates their gravitational acceleration"""
@@ -132,11 +129,8 @@ class GravitySystem:
           
      
 
-class  VelocityIntegrator:  # Verlet integrator, I still need to read more about this but it seems like the standard
-     """Integrator which updates the positions and velocities of the given bodies"""
-     def __init__(self):
-          pass
-
+class  VelocityIntegrator:
+     """Verlet Integrator which updates the positions and velocities of the given bodies"""
      def step(self, bodies, gravity_system, dt):
           """Changes the positions and velocities of the bodies"""
            # 1. Compute current accelerations of all bodies

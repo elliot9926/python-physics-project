@@ -15,16 +15,14 @@ This problem has no exact, single solution, meaning the project will take the in
 2. Clone the repository with 
 ```
 git clone https://github.com/elliot9926/python-physics-project
+cd python-physics.project
 ```
-3. Navigate into the `python-physics-project` directory and create a `venv` with
+3. Create a virtual environment with
 ```
 [path-to-your-python-executable] -m venv .venv_physics
-```
-4. Activate the venv using
-```
 source .venv_physics/bin/activate
 ```
-5. Finally, install the required packages using 
+4. Finally, install the required packages using 
 ```
 pip install -r requirements.txt
 ```
@@ -46,7 +44,7 @@ Navigating the viewport:
 - Editable visual attributes such as name, color, and radius
 - Animated visualization in VPython
 - Ability to create a plot of average distances within the system using matplotlib
-    - Why average distances? As the final state of a 3+ body system in this simulation will see one or more bodies ejected, the average distance between bodies is a clear indicator of when the system loses stability.
+    - Why average distances? As the final state of a 3+ body system in this simulation will see one or more bodies ejected, the average distance between bodies is a clear indicator of when the system loses relative stability.
 
 # Examples/demos
 A stable system including the Earth and Sun (with realistic attributes) is created by default. Try adding a third body to see what happens!

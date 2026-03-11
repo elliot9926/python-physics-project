@@ -34,7 +34,7 @@ while True:
     for body in bodies:
             visualizer.vis_bodies[bodies.index(body)].pos = body.position
 
-    # Only continues the physics simulation if is_running is True
+    # Only continues the physics simulation if is_ running is True
     if simulation.is_running:
         simulation.step()
         
