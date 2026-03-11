@@ -18,6 +18,6 @@ class Visualizer:
     
     def append_body(self, body):
         """Used to add a new body to the visualization list"""
-        new_sphere = vp.simple_sphere(pos=body.position, radius=body.radius, make_trail=True, retain=500)
+        new_sphere = vp.simple_sphere(pos=body.position, radius=body.radius, make_trail=True, retain=1000, color=vp.color.blue)
         body.vis_object = new_sphere
         self.vis_bodies.append(new_sphere)

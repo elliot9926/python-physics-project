@@ -13,11 +13,18 @@ class UiHelper:
         vp.scene.append_to_caption("    ")
 
         add_button = vp.button(bind=ui_functions.add_button, text='Add body')
-        buttons.append(add_button)
+        vp.scene.append_to_caption("    ")
+
+        graph_button = vp.button(bind=ui_functions.graph_button, text='Create Graph')
+        vp.scene.append_to_caption("    ")
+
+
+        self.timer = vp.wtext(text=f"Simulation time: 0 days")
 
         vp.scene.append_to_caption('\n\n')
         self.rows.append(buttons)
 
+    
         for body in bodies:
             self.draw_body_row(body)
         

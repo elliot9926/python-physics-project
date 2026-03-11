@@ -1,9 +1,10 @@
 import numpy as np
 import vpython as vp
+import math
 
 class Simulation:
         """Highest-level control loop which actually runs the simulation"""
-        def __init__(self, system, dt,  ui_helper=None, write_positions=False, is_running=False, visualizer=None):
+        def __init__(self, system, dt,  ui_helper=None, graph_helper=None, write_positions=False, is_running=False, visualizer=None):
              self.system = system
              self.dt = dt # Delta time
              self.time = 0.0 # Starts at 0 when we initialize
@@ -11,19 +12,26 @@ class Simulation:
              self.is_running = is_running
              self.visualizer = visualizer
              self.ui_helper = ui_helper
+             self.graph_helper = graph_helper
+             
+               # Used to create a graph of the average distances in the simulation
+             self.average_distances = []
+             self.average_distances_times = [] 
+
              
 
         def step(self): 
              """Steps forward one dt in time"""
              self.system.integrator.step(self.system.bodies, self.system.gravity_system, self.dt)
 
-             # TODO: To be removed, we no longer need to record the bodies' positions in order to visualize them
-             if self.write_positions:
-               for body in self.system.bodies:
-                    body.write_position()
-        
-            
+             self.time += self.dt
 
+             self.average_distances.append(self.system.calculate_average_distances(self.system.bodies))
+             self.average_distances_times.append(math.floor(self.time/(3600*24)))
+
+        def create_graph(self):
+             self.graph_helper.draw_graph(self.average_distances_times, self.average_distances)
+            
 class System:
      """The overall system including the bodies and the forces"""
      def __init__(self, bodies, integrator, gravity_system):
@@ -51,6 +59,25 @@ class System:
 
           return new_body
      
+     @staticmethod
+     def calculate_average_distances(bodies):
+          """Calculates the average distance between bodies from a given list"""
+          total = 0
+
+          for body_i in bodies:
+               my_avg = 0
+
+               for body_j in bodies:
+                    if body_i == body_j:                    
+                         continue
+                    my_avg += vp.mag(body_i.position - body_j.position)
+               my_avg = my_avg / (len(bodies) - 1)
+
+               total += my_avg
+          
+          total = total / (len(bodies) - 1)
+
+          return total
      
 
 class Body:

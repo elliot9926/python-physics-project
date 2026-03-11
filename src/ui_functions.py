@@ -11,9 +11,6 @@ def run_button(button):
         button.text = 'Run'
         simulation.is_running = False
     else:
-        for body in simulation.visualizer.vis_bodies:
-            body.retain = 500
-        
         button.text = 'Pause'
         simulation.is_running = True
 
@@ -24,7 +21,9 @@ def add_button(button):
     print(f"\n\nNew body info: \nRef:{new_body}\nName:{new_body}")     # For debugging
     simulation.ui_helper.draw_body_row(new_body)
 
-    simulation.visualizer.vis_bodies[simulation.system.bodies.index(new_body)].retain = 0 # Makes the body's visualization trail temporarily invisible
+def graph_button(button):
+    simulation.create_graph()
+
 
 def mass_input(input, body):
     """Allows for user to change a body's mass"""
@@ -57,9 +56,6 @@ def position_input(input, body, axis):
         body.position.y = float(input.number)
     elif axis == 'z':
         body.position.z = float(input.number)
-
-    simulation.visualizer.vis_bodies[simulation.system.bodies.index(body)].pos = body.position
-
 
 def velocity_input(input, body, axis):
     """Allows for user to change a body's initial velocity"""
