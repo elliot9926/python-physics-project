@@ -1,5 +1,5 @@
 import matplotlib
-matplotlib.use('Agg') 
+matplotlib.use('Agg') # Force matplotlib to disable its UI, or else it throws an error
 import matplotlib.pyplot as plt
 
 class GraphHelper:
@@ -14,6 +14,6 @@ class GraphHelper:
         plt.ylabel("Average distance between bodies (meters)")
         plt.title("Average distance between bodies in the system over time")
 
-        plt.savefig("scatter_plot.png", dpi=300, bbox_inches='tight')
+        plt.savefig("output/scatter_plot.png", dpi=300, bbox_inches='tight')
 
         plt.close()

@@ -7,7 +7,7 @@ def create_defaults():
     earth = simulation_classes.Body(
         mass=5.97e24, 
         radius=6371e3, 
-        velocity=vp.vector(-2.43e4, 1.77e4, 0),     # For now, I'm defining x and y as the plane of earth's orbit
+        velocity=vp.vector(-2.43e4, 1.77e4, 0),     # We're defining x and y as the plane of earth's orbit
         position=vp.vector(8.7e10, 1.2e11, 0),
         name='Earth'
         )
@@ -30,7 +30,7 @@ def create_defaults():
 
     simulation = simulation_classes.Simulation(
         system=system, 
-        dt=3600*12.0,
-        write_positions=True)
+        dt=3600*12.0 # Length of a time step, hardcoded as 12 hours
+        )
 
     return simulation

@@ -22,8 +22,8 @@ def add_button(button):
     simulation.ui_helper.draw_body_row(new_body)
 
 def graph_button(button):
+    """Button to generate an average distance graph"""
     simulation.create_graph()
-
 
 def mass_input(input, body):
     """Allows for user to change a body's mass"""
@@ -35,7 +35,6 @@ def radius_input(input, body):
     
     body.radius = new_radius
     body.vis_object.radius = new_radius
-
 
 def name_input(input, body):
     """Allows for user to change a body's name"""

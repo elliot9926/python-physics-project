@@ -2,22 +2,19 @@ import vpython as vp
 import math
 
 class Simulation:
-        """Highest-level control loop which actually runs the simulation"""
-        def __init__(self, system, dt,  ui_helper=None, graph_helper=None, write_positions=False, is_running=False, visualizer=None):
+        """Highest-level class which handles all aspects of the simulation"""
+        def __init__(self, system, dt,  ui_helper=None, graph_helper=None, visualizer=None, is_running=False):
              self.system = system
              self.dt = dt # Delta time
              self.time = 0.0 # Starts at 0 when we initialize
-             self.write_positions = write_positions # TODO: remove this line
              self.is_running = is_running
              self.visualizer = visualizer
              self.ui_helper = ui_helper
              self.graph_helper = graph_helper
              
-               # Used to create a graph of the average distances in the simulation
+             # Used to create a graph of the average distances in the simulation
              self.average_distances = []
              self.average_distances_times = [] 
-
-             
 
         def step(self): 
              """Steps forward one dt in time"""
@@ -25,6 +22,7 @@ class Simulation:
 
              self.time += self.dt
 
+             # Append current states to the average distances list
              self.average_distances.append(self.system.calculate_average_distances(self.system.bodies))
              self.average_distances_times.append(math.floor(self.time/(3600*24)))
 
@@ -52,7 +50,7 @@ class System:
                name='New Body'
           )
 
-          print(f"\n\nSimulation: {sim}\nSim visualizer:{sim.visualizer}\n\n")
+          print(f"\n\nSimulation: {sim}\nSim visualizer:{sim.visualizer}\n\n") # For debugging purposes
           self.__bodies.append(new_body)
           sim.visualizer.append_body(new_body)
 
@@ -93,10 +91,6 @@ class Body:
     
     def __str__(self):
           return self.name
-
-    def write_position(self): # TODO: remove this block
-         self.position_history.append(self.position)
-
      
 
 class GravitySystem:
@@ -149,15 +143,3 @@ class  VelocityIntegrator:  # Verlet integrator, I still need to read more about
           # 4. Update velocities
           for body, acc_old, acc_new in zip(bodies, accelerations, new_accelerations):
                body.velocity += 0.5 * (acc_old + acc_new) * dt
-
-
-
-
-def write_file(system):
-     """Updates a file with the current states of all bodies in the system (may be removed)"""
-     pass
-
-
-
- 
-
