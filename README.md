@@ -2,7 +2,7 @@
 An interactive n-body gravitational physics simulator written in Python
 
 # Description
-This project allows us to simulate the motion of three bodies that interact only through gravity
+This project allows the user to simulate gravitational interactions between several bodies. Its main purpose is to display the non-deterministic and chaotic nature of the three-body problem.
 This problem has no exact, single solution, meaning the project will take the input of initial velocities masses, and positions of the objects to simulate their movement through space with reference to their mutual center of gravity
 
 # Requirements
