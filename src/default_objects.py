@@ -4,23 +4,23 @@ import vpython as vp
 
 def create_defaults():
     """Initializes all required objects and adds default bodies (earth and sun) to the system"""
-    earth = simulation_classes.Body(
-        mass=5.97e24, 
-        radius=6371e3, 
-        velocity=vp.vector(-2.43e4, 1.77e4, 0),     # We're defining x and y as the plane of earth's orbit
+    sol = simulation_classes.Body(
+        mass=1.989e30, 
+        radius=6957000e3, 
+        velocity=vp.vector(-1e4, 1e4, 0),     # We're defining x and y as the plane of earth's orbit
         position=vp.vector(8.7e10, 1.2e11, 0),
-        name='Earth'
+        name='Sol'
         )
         
     sun = simulation_classes.Body(
-        mass=1.989e30, 
-        radius=695700e3, 
-        velocity=vp.vector(0, 0, 0), 
+        mass=1.989e30,
+        radius=6957000e3, 
+        velocity=vp.vector(1e4, -1e4, 0), 
         position=vp.vector(0, 0, 0),
         name='Sun'
         )
 
-    bodies = [earth, sun]
+    bodies = [sol, sun]
 
     gravity_system = simulation_classes.GravitySystem()
     integrator = simulation_classes.VelocityIntegrator()

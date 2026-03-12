@@ -47,7 +47,7 @@ Navigating the viewport:
     - Why average distances? As the final state of a 3+ body system in this simulation will see one or more bodies ejected, the average distance between bodies is a clear indicator of when the system loses relative stability.
 
 # Examples/demos
-A stable system including the Earth and Sun (with realistic attributes) is created by default. Try adding a third body to see what happens!
+A stable system of two equal-mass stars is created by default. Try adding a third body to see what happens!
 
 # License
 Distributed under CC BY-SA 4.0

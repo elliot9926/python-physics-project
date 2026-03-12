@@ -50,8 +50,8 @@ class System:
           """Adds a new body to the simulation after initialization"""
           new_body = Body(
                mass=1.989e30, 
-               radius=695700e3, 
-               velocity=vp.vector(2.43e4, -1.77e4, 0), 
+               radius=6957000e3, 
+               velocity=vp.vector(1e4, -1.77e4, 1.77e4), 
                position=vp.vector(-8.7e10, -1.2e11, 0),
                name='New Body'
           )
@@ -119,8 +119,9 @@ class GravitySystem:
                          continue
                     
                     r = body_j.position - body_i.position   # Get the difference vector between the position vectors of the two bodies
-                    distance = vp.mag(r + vp.vector(7e8, 7e8, 7e8))        # The magnitude of the difference vector is the distance between the bodies
-                    # We also add a sun's radius worth of distance to all calculations to roughly simulate bodies having a physical radius
+                    distance = vp.mag(r + vp.vector(1e-10, 1e-10, 1e-10))        # The magnitude of the difference vector is the distance between the bodies
+                    if distance < 7e8:
+                         distance = 7e8 # We also add a sun's radius worth of distance to any small distances to roughly simulate bodies having a physical radius
 
                     total_acceleration += GravitySystem.G * body_j.mass * r / distance**3     
                
