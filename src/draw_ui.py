@@ -15,7 +15,6 @@ class UiHelper:
         graph_button = vp.button(bind=ui_functions.graph_button, text='Create Graph')
         vp.scene.append_to_caption("    ")
 
-
         self.timer = vp.wtext(text=f"Simulation time: 0 days")
 
         vp.scene.append_to_caption('\n\n')

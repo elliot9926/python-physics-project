@@ -11,11 +11,11 @@ This problem has no exact, single solution, meaning the project will take the in
 - MatPlotLib 3.10.8 - Used for generating a graph of results after the simulation is run
 
 # Installation
-1. Download the appropriate version of Python onto your system
+1. Install the appropriate version of Python onto your system
 2. Clone the repository with 
 ```
 git clone https://github.com/elliot9926/python-physics-project
-cd python-physics.project
+cd python-physics-project
 ```
 3. Create a virtual environment with
 ```
